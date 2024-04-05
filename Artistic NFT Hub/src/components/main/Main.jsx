@@ -59,7 +59,7 @@ const Main = () => {
                 </div>
 
                 <div className='main-second-div' >
-                    <div className='main-first-div-3' >
+                    <div className='main-second-div-1' >
                         < Unit />
                     </div>
                 </div>
