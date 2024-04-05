@@ -1,4 +1,3 @@
-
 .sidebar {
     flex: 1;
     min-height: 100vh;
@@ -35,7 +34,6 @@
     align-items: center;
     flex-direction: column;
 }
-
 
 .sidebar-main-menu-3 {
     width: 100%;
