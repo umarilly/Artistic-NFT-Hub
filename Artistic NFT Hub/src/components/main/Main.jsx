@@ -49,7 +49,7 @@ const Main = () => {
 
                     <div className='main-first-div-2' >
                         <div>
-                            <div style={{ fontSize: 'xx-large' }} > Dashboard </div>
+                            <div style={{ fontSize: 'xx-large' , marginLeft: '10px' }} > Dashboard </div>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center' }} >
                             <img src={Refresh} alt="Refresh" />
