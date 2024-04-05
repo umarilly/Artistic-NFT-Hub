@@ -1,8 +1,12 @@
 
 .main {
     flex: 1;
-    border: 1px solid rgb(188, 188, 188);
+    
     min-height: 100vh;
     margin: 0px 0px 0px 0px;
     position: sticky;
+    background-color: #666666;
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }

@@ -1,8 +1,46 @@
 
 .sidebar {
     flex: 1;
-    border: 1px solid rgb(188, 188, 188);
     min-height: 100vh;
     margin: 0px 0px 0px 0px;
     position: sticky;
+    background-color: black;
+}
+
+.sidebar-main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.sidebar-main-menu-1 {
+    width: 100%;
+    height: 32vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 17px;
+}
+
+.sidebar-main-menu-brandlogo {
+    cursor: pointer;
+}
+
+.sidebar-main-menu-2 {
+    width: 100%;
+    height: 32vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.sidebar-main-menu-3 {
+    width: 100%;
+    height: 32vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
