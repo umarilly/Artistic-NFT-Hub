@@ -42,3 +42,15 @@
     justify-content: center;
     align-items: flex-end;
 }
+
+@media screen and (max-width: 900px) {
+    .sidebar-main-menu-1 img {
+        width: 100%;
+    }
+    .sidebar-main-menu-2 img {
+        width: 100%;
+    }
+    .sidebar-main-menu-3 img {
+        width: 100%;
+    }
+}

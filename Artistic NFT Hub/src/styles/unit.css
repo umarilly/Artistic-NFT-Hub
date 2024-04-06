@@ -12,7 +12,6 @@
     
 }
 
-
 .main-first-slider-pos {
     width: 30%;
     height: 100%;
@@ -352,4 +351,31 @@
 
 .main-units-area-btn-inside-forward {
     cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .main-units-area-slider {
+        height: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    .main-first-slider-pos {
+        width: 90%;
+        height: 100%;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: black;
+        margin-bottom: 30px;
+    }
+    .main-units-area-btn {
+        display: none;
+    }
 }

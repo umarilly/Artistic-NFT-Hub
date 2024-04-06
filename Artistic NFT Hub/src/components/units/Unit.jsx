@@ -6,10 +6,20 @@ import CreatureNFT from '../../assets/nft_illustration2.png';
 import OneEyeNFT from '../../assets/nft_illustration3.png';
 import Forward from '../../assets/forward.png';
 import Back from '../../assets/back.png';
+import styled from 'styled-components';
 
 const Unit = () => {
 
     const [currentSlide, setCurrentSlide] = useState(0);
+
+    const MainFirstSliderPos = styled.div`
+    order: ${({ index, currentSlide, slides }) => (index - currentSlide + slides.length) % slides.length};
+    transform: translateX(${({ index, currentSlide }) => (index - currentSlide) + slides.length}%);
+    transition: transform 1s ease;
+    @media (max-width: 768px) {
+        transform: none;
+        transition: none;
+    }`;
 
     const slides = [
         {
@@ -46,38 +56,40 @@ const Unit = () => {
     return (
         <>
             <div className='main-units-area'>
+
                 <div className='main-units-area-slider'>
 
                     {slides.map((slide, index) => (
 
-                        <div key={index} className={`main-first-slider-pos`} style={{ order: (index - currentSlide + slides.length) % slides.length, transform: `translateX(${(index - currentSlide) + slides.length}%)`,
-                        transition: 'transform 1s ease' }} >
-                            <div className='main-first-slider-pos-head'>
-                                <div className='main-first-slider-pos-head-name'>{slide.name}</div>
-                                <div className='main-first-slider-pos-head-option'>...</div>
-                            </div>
-                            <div className='main-first-slider-pos-pic'>
-                                <img src={slide.pic} alt={slide.name} />
-                            </div>
-                            <div className='main-first-slider-pos-data'>
-                                <div className='main-first-slider-pos-data-row1'>
-                                    <div>Owner</div>
-                                    <div>{slide.owner}</div>
+                        <MainFirstSliderPos key={index} index={index} currentSlide={currentSlide} slides={slides} className={`main-first-slider-pos`}>
+                                <div className='main-first-slider-pos-head'>
+                                    <div className='main-first-slider-pos-head-name'>{slide.name}</div>
+                                    <div className='main-first-slider-pos-head-option'>...</div>
                                 </div>
-                                <div className='main-first-slider-pos-data-row2'>
-                                    <div>Mint Address</div>
-                                    <div>{slide.mintAddress}</div>
+                                <div className='main-first-slider-pos-pic'>
+                                    <img src={slide.pic} alt={slide.name} />
                                 </div>
-                                <div className='main-first-slider-pos-data-row3'>
-                                    <div>Token Address</div>
-                                    <div>{slide.tokenAddress}</div>
+                                <div className='main-first-slider-pos-data'>
+                                    <div className='main-first-slider-pos-data-row1'>
+                                        <div>Owner</div>
+                                        <div>{slide.owner}</div>
+                                    </div>
+                                    <div className='main-first-slider-pos-data-row2'>
+                                        <div>Mint Address</div>
+                                        <div>{slide.mintAddress}</div>
+                                    </div>
+                                    <div className='main-first-slider-pos-data-row3'>
+                                        <div>Token Address</div>
+                                        <div>{slide.tokenAddress}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
+                            
+                        </MainFirstSliderPos>
 
-                    
+
+                    ))}
                 </div>
+
                 <div className='main-units-area-btn'>
                     <div className='main-units-area-btn-inside'>
                         <div className='main-units-area-btn-inside-back' onClick={handlePrevSlide}>

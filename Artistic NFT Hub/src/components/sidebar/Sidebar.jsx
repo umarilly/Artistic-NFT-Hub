@@ -8,7 +8,15 @@ import Home from '../../assets/home.png'
 import NFTListing from '../../assets/nftlisting.png'
 import Settings from '../../assets/settings.png'
 
+import { useNavigate } from 'react-router-dom';
+
 const Sidebar = () => {
+
+    const navigate = useNavigate();
+
+    const OpenNfts = () => {
+        navigate('/nft');
+    }
 
     return (
 
@@ -25,7 +33,7 @@ const Sidebar = () => {
 
                     <div className='sidebar-main-menu-2' >
                         <div ><img src={Home} alt="Home" /> </div>
-                        <div> <img src={NFTListing} alt="NFT Listing" /> </div>
+                        <div onClick={OpenNfts} > <img src={NFTListing} alt="NFT Listing" /> </div>
                         <div> <img src={Settings} alt="Settings" /> </div>
                     </div>
 

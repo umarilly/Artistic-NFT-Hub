@@ -7,25 +7,18 @@
 
 .home-sidebar {
     width: 8%;
-
 }
 
 .home-main {
     width: 92%;
 }
 
-/*
-.dashboardHome {
-    display: flex;
-}
-
-.homeContainer {
-    flex: 5.5;
-}
-
-@media screen and (min-width: 1801px) {
-    .homeContainer {
-        flex: 8;
+@media screen and (max-width: 900px) {
+    .home-sidebar {
+        width: 15%;
     }
-
-} */
+    
+    .home-main {
+        width: 85%;
+    }
+}
