@@ -12,84 +12,18 @@ import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 
 const connection = new Connection(clusterApiUrl("devnet"));
 connection.getVersion().then((version) => {
-    console.log("Solana network version:", version);
+    // console.log("Solana network version:", version);
 });
 
 const mx = Metaplex.make(connection);
-console.log("Metaplex object:", mx);
+// console.log("Metaplex object:", mx);
 
 const owner = new PublicKey("84RSSrVEpb8VhSgt58j7mBwwQA38copF4tgRdpn9griy");
 
 const CradsNFT = () => {
 
     const [currentSlide, setCurrentSlide] = useState(0);
-
-    const MainFirstSliderPos = styled.div`
-    order: ${({ index, currentSlide, slides }) => (index - currentSlide + slides.length) % slides.length};
-    transform: translateX(${({ index, currentSlide }) => (index - currentSlide) + slides.length}%);
-    transition: transform 1s ease;
-    @media (max-width: 768px) {
-        transform: none;
-        transition: none;
-    }`;
-
     const [nfts, setNfts] = useState([]);
-
-    async function fetchAndDisplayImage(uri) {
-        try {
-            const response = await fetch(uri);
-            const data = await response.json();
-            const imageUrl = data.image;
-            const name = data.name;
-            return imageUrl;
-        } catch (error) {
-            console.error('Error fetching image:', error);
-            return null;
-        }
-    }
-
-    const fetchNfts = async () => {
-        try {
-            const fetchedNfts = await mx.nfts().findAllByOwner({ owner });
-            console.log("Fetched NFTs : ", fetchedNfts);
-            if (fetchedNfts.length === 0) {
-                setError("No NFTs found for this owner.");
-            } else {
-                setNfts(fetchedNfts.slice(4, 7));
-            }
-        } catch (err) {
-            console.error("Error fetching NFTs:", err);
-            setError(err.message || "Failed to fetch NFTs");
-        }
-    };
-
-    useEffect(() => {
-
-        console.log("Fetching NFTs...");
-        fetchNfts();
-
-    }, []);
-
-    const fetchAndDisplayImages = async () => {
-        const updatedNfts = await Promise.all(
-            nfts.map(async (nft) => {
-                const imageUrl = await fetchAndDisplayImage(nft.uri);
-                const nftMintAddress = nft.mintAddress?.toBase58();
-                return { ...nft, imageUrl };
-            })
-        );
-        setNfts(updatedNfts);
-
-        const updatedSlides = updatedNfts.map(nft => ({
-            name: nft.name,
-            pic: nft.imageUrl,
-            owner: '72UGr...YdD', // Placeholder value, replace with actual owner
-            mintAddress: nft.mintAddress?.toBase58(),
-            tokenAddress: nft.address?.toString()
-        }));
-        setSlides(updatedSlides);
-    };
-
     const [slides, setSlides] = useState([
         {
             name: 'Cyberlinx #2551',
@@ -114,13 +48,73 @@ const CradsNFT = () => {
         }
     ]);
 
+    const fetchNfts = async () => {
+        try {
+            const fetchedNfts = await mx.nfts().findAllByOwner({ owner });
+            console.log("Fetched NFTs : ", fetchedNfts);
+            if (fetchedNfts.length === 0) {
+                console.log("No NFTs found for this owner");
+            } else {
+                setNfts(fetchedNfts.slice(4, 7));
+
+            }
+        } catch (err) {
+            console.error("Error fetching NFTs:", err);
+        }
+    };
+
+    useEffect(() => {
+        fetchNfts();
+    }, []);
+
+    async function fetchImages(uri) {
+        try {
+            const response = await fetch(uri);
+            const data = await response.json();
+            const imageUrl = data.image;
+            const name = data.name;
+            return imageUrl;
+
+        } catch (error) {
+            console.error('Error fetching image:', error);
+            return null;
+        }
+    }
+
+    const DisplayImages = async () => {
+        try {
+            const updatedNfts = await Promise.all(
+                nfts.map(async (nft) => {
+                    const imageUrl = await fetchImages(nft.uri);
+                    return { ...nft, imageUrl };
+                })
+            );
+
+            const updatedSlides = updatedNfts.map(nft => ({
+                name: nft.name,
+                pic: nft.imageUrl,
+                owner: '72UGr...YdD',
+                mintAddress: nft.mintAddress
+                    ? `${nft.mintAddress.toString().slice(0, 5)}...${nft.mintAddress.toString().slice(-3)}`
+                    : '',
+                tokenAddress: nft.address
+                    ? `${nft.address.toString().slice(0, 5)}...${nft.address.toString().slice(-3)}`
+                    : ''
+            }));
+
+            setNfts(updatedNfts);
+            setSlides(updatedSlides);
+
+        } catch (err) {
+            console.error("Error fetching and displaying images : ", err);
+        }
+    };
 
     useEffect(() => {
         if (nfts.length > 0) {
-            fetchAndDisplayImages();
+            DisplayImages();
         }
-    }, [nfts]);
-
+    }, []);
 
 
     const handleNextSlide = () => {
@@ -131,12 +125,21 @@ const CradsNFT = () => {
         setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
     };
 
+    const MainFirstSliderPos = styled.div`
+    order: ${({ index, currentSlide, slides }) => (index - currentSlide + slides.length) % slides.length};
+    transform: translateX(${({ index, currentSlide }) => (index - currentSlide) + slides.length}%);
+    transition: transform 1s ease;
+    @media (max-width: 768px) {
+        transform: none;
+        transition: none;
+    }`;
+
     return (
         <>
             <div className='main-units-area'>
                 <div className='main-units-area-slider'>
                     {slides.map((slide, index) => (
-                        <MainFirstSliderPos key={index} index={index} currentSlide={currentSlide} slides={slides} className={`main-first-slider-pos`}>
+                        <MainFirstSliderPos as="div" key={index} index={index} currentSlide={currentSlide} slides={slides} className={`main-first-slider-pos`}>
                             <div className='main-first-slider-pos-head'>
                                 <div className='main-first-slider-pos-head-name'>{slide.name}</div>
                                 <div className='main-first-slider-pos-head-option'>...</div>
@@ -147,7 +150,9 @@ const CradsNFT = () => {
                             <div className='main-first-slider-pos-data'>
                                 <div className='main-first-slider-pos-data-row1'>
                                     <div>Owner</div>
-                                    <div>{owner.toBase58()}</div>
+                                    <div>{owner
+                                        ? `${owner.toString().slice(0, 5)}...${owner.toString().slice(-3)}`
+                                        : ''}</div>
                                 </div>
                                 <div className='main-first-slider-pos-data-row2'>
                                     <div>Mint Address</div>
@@ -161,6 +166,7 @@ const CradsNFT = () => {
                         </MainFirstSliderPos>
                     ))}
                 </div>
+
                 <div className='main-units-area-btn'>
                     <div className='main-units-area-btn-inside'>
                         <div className='main-units-area-btn-inside-back' onClick={handlePrevSlide}>
@@ -171,6 +177,7 @@ const CradsNFT = () => {
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </>

@@ -1,20 +1,19 @@
-
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../sidebar/Sidebar'
 import Main from '../main/Main'
 import '../../styles/home.css'
 
 const Home = () => {
+
     return (
         <>
             <div className='home-root' >
                 <div className='home-sidebar' >
-                    < Sidebar />
+                    <Sidebar />
                 </div>
-                <div className='home-main' >  
-                    < Main />
+                <div className='home-main' >
+                    <Main />
                 </div>
-
             </div>
         </>
     )

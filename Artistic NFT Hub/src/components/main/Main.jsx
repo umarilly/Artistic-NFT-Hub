@@ -1,11 +1,8 @@
 
 import React from 'react'
 import '../../styles/main.css'
-
 import Unit from '../../components/units/Unit'
-
 import Eicon from '../../assets/Eicon.png'
-
 import Refresh from '../../assets/refresh.png'
 import Avatar from '../../assets/avatar.png'
 
