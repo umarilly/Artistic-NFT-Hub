@@ -114,7 +114,7 @@ const CradsNFT = () => {
         if (nfts.length > 0) {
             DisplayImages();
         }
-    }, []);
+    }, [nfts.length]);
 
 
     const handleNextSlide = () => {
@@ -134,6 +134,8 @@ const CradsNFT = () => {
         transition: none;
     }`;
 
+
+
     return (
         <>
             <div className='main-units-area'>
@@ -145,7 +147,7 @@ const CradsNFT = () => {
                                 <div className='main-first-slider-pos-head-option'>...</div>
                             </div>
                             <div className='main-first-slider-pos-pic'>
-                                <img src={slide.pic} alt={slide.name} />
+                                <img className='nft-img'  src={slide.pic} alt={slide.name} />
                             </div>
                             <div className='main-first-slider-pos-data'>
                                 <div className='main-first-slider-pos-data-row1'>
