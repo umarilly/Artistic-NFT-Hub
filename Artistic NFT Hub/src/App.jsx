@@ -7,7 +7,7 @@ import Home from './components/home/Home';
 
 import '../src/styles/fonts.css'
 import './App.css'
-import NFTCard from './NFTCard';
+import NFT from '../src/components/dynamic NFTs/NFT';
 
 function App() {
 
@@ -17,8 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={< Home />} />
-          <Route path="/dashboard" element={< Home />} />
-          <Route path="/nft" element={< NFTCard />} />
+          <Route path="/nft" element={< NFT />} />
         </Routes>
       </Router>
 

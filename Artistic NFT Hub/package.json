@@ -21,6 +21,7 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "assert": "^2.1.0",
     "crypto-browserify": "^3.12.0",

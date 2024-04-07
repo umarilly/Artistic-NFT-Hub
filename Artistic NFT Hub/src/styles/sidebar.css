@@ -1,3 +1,4 @@
+/* Sidebar */
 .sidebar {
     flex: 1;
     min-height: 100vh;
@@ -6,14 +7,16 @@
     background-color: black;
 }
 
-.sidebar-main-menu {
+/* Vertical Sidebar */
+.vertical-sidebar {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.sidebar-main-menu-1 {
+/* Sidebar Logo */
+.sidebar-logo {
     width: 100%;
     height: 32vh;
     display: flex;
@@ -22,20 +25,45 @@
     margin-top: 17px;
 }
 
-.sidebar-main-menu-brandlogo {
+.sidebar-logo-image {
     cursor: pointer;
 }
 
-.sidebar-main-menu-2 {
+.sidebar-logo-image {
+    transition: transform 0.3s;
+}
+
+.sidebar-logo-image:hover {
+    animation: moveLeftRight 0.5s ease-in-out infinite; 
+}
+
+@keyframes moveLeftRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-5px); } 
+}
+
+/* Sidebar Menu - Main */
+.sidebar-main-menu {
     width: 100%;
     height: 32vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    cursor: pointer;
 }
 
-.sidebar-main-menu-3 {
+.animated-div {
+    animation: moveLeftRightLogo 0.5s ease-in-out infinite;
+}
+
+@keyframes moveLeftRightLogo {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-5px); }
+}
+
+/* Sidebar Menu - Settings */
+.sidebar-setting-menu {
     width: 100%;
     height: 32vh;
     display: flex;
@@ -44,13 +72,13 @@
 }
 
 @media screen and (max-width: 900px) {
-    .sidebar-main-menu-1 img {
+    .sidebar-main-menu img {
         width: 100%;
     }
-    .sidebar-main-menu-2 img {
+    .sidebar-main-menu img {
         width: 100%;
     }
-    .sidebar-main-menu-3 img {
+    .sidebar-main-menu img {
         width: 100%;
     }
 }
