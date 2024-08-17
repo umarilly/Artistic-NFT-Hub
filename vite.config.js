@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import inject from '@rollup/plugin-inject';
 
 export default defineConfig({
   plugins: [react()],
@@ -18,11 +19,17 @@ export default defineConfig({
     },
   },
   define: {
-    'process.env': process.env ?? {},
+    'process.env': {},
   },
   build: {
     target: 'esnext',
     rollupOptions: {
+      plugins: [
+        inject({
+          process: 'process',
+          Buffer: ['buffer', 'Buffer'],
+        }),
+      ],
     },
   },
   optimizeDeps: {
@@ -30,7 +37,7 @@ export default defineConfig({
       plugins: [
         NodeGlobalsPolyfillPlugin({
           buffer: true,
-          process: true, 
+          process: true,
         }),
       ],
     },

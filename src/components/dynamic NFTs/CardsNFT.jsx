@@ -55,7 +55,7 @@ const CradsNFT = () => {
             if (fetchedNfts.length === 0) {
                 console.log("No NFTs found for this owner");
             } else {
-                setNfts(fetchedNfts.slice(4, 7));
+                setNfts(fetchedNfts.slice(2, 5));
 
             }
         } catch (err) {
