@@ -70,7 +70,9 @@ const CradsNFT = () => {
     async function fetchImages(uri) {
         try {
             const response = await fetch(uri);
+            console.log('Images response : ' , response);
             const data = await response.json();
+            console.log('Images response data : ' , data);
             const imageUrl = data.image;
             const name = data.name;
             return imageUrl;
