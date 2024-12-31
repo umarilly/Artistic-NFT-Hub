@@ -12,12 +12,15 @@
   "dependencies": {
     "@metaplex-foundation/js": "^0.20.1",
     "@solana/web3.js": "^1.91.4",
+    "buffer": "^6.0.3",
     "events": "^3.3.0",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "stream-browserify": "^3.0.0",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
@@ -33,7 +36,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "util": "^0.12.5",
     "vite": "^5.2.0"
   }
 }
